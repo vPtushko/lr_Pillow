@@ -1,0 +1,57 @@
+from tkinter import *
+from PIL import ImageTk, Image
+
+
+filename = 'C:/Users/User/Pictures/comp.jpg'
+root = Tk()
+root.geometry("550x300+300+150")
+root.resizable(width=True, height=True)
+
+
+def open_img():
+    x = filename
+    img = Image.open(x)
+    img = img.resize((250, 250), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+    panel = Label(root, image=img)
+    panel.image = img
+    panel.pack()
+
+
+btn = Button(root, text="open image", command=open_img).pack()
+
+
+def save():
+    img = Image.open('C:/Users/User/Pictures/comp.jpg')
+    img.save('C:/Users/User/Pictures/comp.png')
+
+
+btn1 = Button(root, text="save png", command=save).pack()
+
+
+def color():
+    img = Image.open('C:/Users/User/Pictures/comp.jpg')
+    m = img.convert("L")
+    img = m.resize((250, 250), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+    panel = Label(root, image=img)
+    panel.image = img
+    panel.pack()
+
+
+btn2 = Button(root, text="black and white", command=color).pack()
+
+
+def size():
+    img = Image.open('C:/Users/User/Pictures/comp.jpg')
+    img = img.resize((50, 50), Image.ANTIALIAS)
+    img = ImageTk.PhotoImage(img)
+    panel = Label(root, image=img)
+    panel.image = img
+    panel.pack(
+
+
+btn3=Button(root, text="size", command=size).pack())
+
+
+root.mainloop()
